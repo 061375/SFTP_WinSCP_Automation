@@ -19,7 +19,8 @@
 
 💧 WinSCPnet
 
-  
+### TODO
+- Add ability to run independantly with an internal loop
 
 [versions.md](versions)
 
