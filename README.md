@@ -22,13 +22,13 @@
 ### TODO
 - Add ability to run independantly with an internal loop
 
-[versions.md](versions)
+[versions](/versions.md)
 
-[AQFTP/versions.md](/DLL/AQFTP/versions.md)
+[AQFTP/versions](/DLL/AQFTP/versions.md)
 
-[AQFTP/versions.md](/DLL/AQFTP/versions.md)
+[AQFTP/versions](/DLL/AQFTP/versions.md)
 
-[AQHelpers/versions.md](/DLL/AQHelpers/versions.md)
+[AQHelpers/versions](/DLL/AQHelpers/versions.md)
 
 ### Configuration
 
