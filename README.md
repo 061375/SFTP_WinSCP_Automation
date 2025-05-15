@@ -1,132 +1,151 @@
+# SFTP Automation with WinSCP
 
-# SFTP WinSCP Automation
-
-#### A simple wrapper to automate uploading and downloading of files ( specifically for EDI transactions )
-
-#### Jeremy Heminger <jeremy.heminger@aquamor.com>, <contact@jeremyheminger.com>
-
+### A Simple Tool for Automating EDI File Transfers  
+Created by: Jeremy Heminger  
+Contact: [jeremy.heminger@aquamor.com](mailto:jeremy.heminger@aquamor.com), [contact@jeremyheminger.com](mailto:contact@jeremyheminger.com) 
   
+  ᓚᘏᗢ 
 
-	ᓚᘏᗢ
+---
 
-#### Automates uploading and downloading files using FTP/SFTP specifically for EDI transactions
+## Overview
 
-# Dependancies
+This tool is a lightweight wrapper designed to **automate file uploads and downloads** via FTP or SFTP, primarily for **EDI (Electronic Data Interchange)** transactions.
 
-💧 AQHelpers
+It simplifies and schedules file transfers, integrates with DelmiaWorks or standalone scripts, and includes support for logging, email notifications, and testing modes.
 
-💧 AQFTP
+---
 
-💧 WinSCPnet
+## Dependencies
 
-### TODO
-- filter file types
+Make sure the following components are installed:
 
-### Versions 
+- 💧 `AQHelpers`
+- 💧 `AQFTP`
+- 💧 `WinSCPnet`
 
-[AQFTP/versions](/AQFTP/versions.md)
+---
 
-[DLL/AQFTP/versions](/DLL/AQFTP/versions.md)
+## Features
 
-[DLL/AQHelpers/versions](/DLL/AQHelpers/versions.md)
+- Automated uploads/downloads using FTP or SFTP.
+- Supports logging and email alerts.
+- Can run on a schedule or loop continuously.
+- Simple configuration via XML.
+- Designed for EDI data paths.
 
-### Configuration
+---
 
-The configuration is in an XML file. The path to this file can be specified as an argument *See Usage*
+## To-Do
 
-    <?xml version="1.0" encoding="utf-8" ?>
-	<configuration>
-    <startup> 
-        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.8" />
-    </startup>
-	  <appSettings>
-               <add key="Loop" value="False" />
-               <add key="LoopTime" value="1800000" />
-               <add key="Testing" value="True" />
-               <add key="LogEvents" value="True" />
-               <add key="ConsoleLog" value="True" />
-               <add key="LogPath" value="" />
+- Add support for file type filtering.
+
+---
+
+## Version Tracking
+
+- [AQFTP Versions](/AQFTP/versions.md)  
+- [DLL/AQFTP Versions](/DLL/AQFTP/versions.md)  
+- [DLL/AQHelpers Versions](/DLL/AQHelpers/versions.md)  
+
+---
+
+## Configuration
+
+Settings are stored in an XML configuration file. You can specify the path to this file as a command-line argument.
+
+Example:
+
+```xml
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.8" />
+  </startup>
+  <appSettings>
+    <add key="Loop" value="False" />
+    <add key="LoopTime" value="1800000" />
+    <add key="Testing" value="True" />
+    <add key="LogEvents" value="True" />
+    <add key="ConsoleLog" value="True" />
+    <add key="LogPath" value="" />
     
-               <add key="EmailUpdates" value="True" />
-               <add key="EmailErrors" value="True" />
-               <add key="EmailAddresses" value="test@test.com,test2@test2.com" />
+    <add key="EmailUpdates" value="True" />
+    <add key="EmailErrors" value="True" />
+    <add key="EmailAddresses" value="test@test.com,test2@test2.com" />
     
+    <add key="TESTEDIIN" value="C:\EDI\IN\" />
+    <add key="TESTEDIOUT" value="C:\EDI\OUT\" />
+    <add key="EDIIN" value="M:\EDI\IN\" />
+    <add key="EDIOUT" value="M:\EDI\Out\" />
     
-               <add key="TESTEDIIN" value="C:\EDI\IN\" />
-               <add key="TESTEDIOUT" value="C:\EDI\OUT\" />
-               <add key="EDIIN" value="M:\EDI\IN\" />
-               <add key="EDIOUT" value="M:\EDI\Out\" />
-
-               <add key="UseSFTP" value="False" />
-               <add key="FtpServer" value="ftp.[ftpserver].com" />
-               <add key="FtpServerUserName" value="[username]" />
-               <add key="FtpServerPassword" value="[password]" />
+    <add key="UseSFTP" value="False" />
+    <add key="FtpServer" value="ftp.[ftpserver].com" />
+    <add key="FtpServerUserName" value="[username]" />
+    <add key="FtpServerPassword" value="[password]" />
     
-               <add key="SFTPServer" value="sftp.s[ftpserver].com" />
-               <add key="SFTPServerUserName" value="[username]" />
-               <add key="SFTPServerPassword" value="[password" />
-               <add key="SshHostKeyFingerprint" value="ssh-rsa 2048 [hash]" />
-               <add key="SFTPport" value="22" />
+    <add key="SFTPServer" value="sftp.[ftpserver].com" />
+    <add key="SFTPServerUserName" value="[username]" />
+    <add key="SFTPServerPassword" value="[password]" />
+    <add key="SshHostKeyFingerprint" value="ssh-rsa 2048 [hash]" />
+    <add key="SFTPport" value="22" />
+    
+    <add key="Inbound" value="EDI/Inbound" />
+    <add key="Outbound" value="EDI/Outbound" />
+    
+    <add key="SMTP" value="smtp.[smtp].com" />
+    <add key="EmailFrom" value="no-reply@[domain].com" />
+    <add key="EmailPort" value="587" />
+    <add key="EmailCredentialsUser" value="no-reply@[domain].com" />
+    <add key="EmailCredentialsPass" value="[password]" />
+  </appSettings>
+</configuration>
+```
 
-               <add key="Inbound" value="EDI/Inbound" />
-               <add key="Outbound" value="EDI/Outbound" />
+### Key Settings Explained
 
-               <add key="SMTP" value="smtp.[smptp].com" />
-               <add key="EmailFrom" value="no-reply@[domain].com" />
-               <add key="EmailPort" value="587" />
-               <add key="EmailCredentialsUser" value="no-reply@[domain].com" />
-               <add key="EmailCredentialsPass" value="[password]" />
-	  </appSettings>
-	</configuration>
+- **Testing**: Enables test folder paths (`TESTEDIIN`, `TESTEDIOUT`).
+- **Loop**: Runs the application continuously if set to `True`.
+- **LoopTime**: Time (in milliseconds) between cycles (default: 30 minutes).
+- **Logging**: Enable `LogEvents` and `ConsoleLog` for logs. Set `LogPath` to store `.log` files.
+- **Email Notifications**: Set `EmailUpdates` and/or `EmailErrors` to `True`, and define `EmailAddresses` (comma-separated).
+- **FTP/SFTP Settings**: Set credentials and remote directories.
+- **Email Server (SMTP)**: Used to send alerts or updates.
 
- - Testing [boolean] if True then the config will use the TEST configurations
- - Loop [boolean] if True then the application will run on a loop indefinetly
- - LoopTime [int] the number (in milliseconds) between each loop. *the default is 30 minutes*
- - LogEvents [boolean] if True then events will be logged
- - ConsoleLog [boolean] If True then Console events will be logged (note: some events will always be logged)
- - LogPath [string] If set this is a path to log files *.log
- - EmailUpdates [boolean] If True and if EmailAddresses is set then an email will be dispatched at certain events
- - EmailErrors [boolean] if True then email is dispatched when errors occur
- - EmailAddresses [string] email addresses of events. Can be comma delimited
- - UseSFTP [boolean] If True then then the requests will be sent via SFTP
- - TESTEDIIN [string] Path to a local folder for testing. Files will be downloaded here
- - TESTEDIOUT [string] Path to a local folder for testing. Files will be uploaded from here
- - EDIIN [string] Files will be downloaded here
- - EDIOUT [string] Files will be uploaded from here
- - FtpServer [string] FTP server domain
- - FtpServerUserName [string] FTP user name
- - FtpServerPassword [string] FTP password
- - SFTPServer [string]  SFTP server domain
- - SFTPServerUserName [string] SFTP user name
- - SFTPServerPassword [string] SFTP password
- - SshHostKeyFingerprint [string] *optional* - See Create SshHostKeyFingerprint  below
- - SFTPport [int] The port number *default is 22*
- - Inbound [string] the remote folder where inbound EDI files should land
- - Outbound [string] the remote folder where EDI files will be uploaded to
- - SMTP [string] the domain of the SMTP email server
- - EmailFrom [string] an email address the SMTP will be sending from *typically re-reply@domain.com*
- - EmailPort [int] The number of the SMTP port *default is 587*
- - EmailCredentialsUser [string] the SMTP user name
- - EmailCredentialsPass [string] the SMTP password
+---
 
-### Usage
-#### eServer or IQAlert
-Follow the instructions for adding an EXE as an Action.
-Set the interval to a reasonable timeframe *30 minutes for example*
-It will probably be necessary to set the path to the config file. Do so as the first argument 
-*Example*
+## How to Use
 
-    \\DELMIAWORKS\BIN\AQFTP\AQ_FTP.exe \\DELMIAWORKS\BIN\AQFTP\AQ_FTP.exe.config
+### With eServer or IQAlert
 
-#### PowerShell Command Line (CLI) or Terminal
-These can be run from the Wndows Task Scheduler or from the CRON tab they can also be run from a Powershell script or a BASH script.
+1. Add the `.exe` file as an action.
+2. Set the run interval (e.g., every 30 minutes).
+3. Provide the path to the `.config` file as the first argument.
 
-### Create SshHostKeyFingerprint  
-Some servers may require an SSH Host fingerprint. This can be created in:
-#### Powershell
+Example:
 
-    ssh-keyscan -t rsa host.example.com 2>$null | ssh-keygen -lf - | ForEach-Object { $p = $_ -split '\s+' "ssh-rsa $($p[0]) $($p[1])" }
+```bash
+\\DELMIAWORKS\BIN\AQFTP\AQ_FTP.exe \\DELMIAWORKS\BIN\AQFTP\AQ_FTP.exe.config
+```
 
-#### Mac and Linux
+### Via PowerShell or Terminal
 
-    ssh-keyscan -t rsa host.example.com 2>/dev/null | ssh-keygen -lf - | awk '{print "ssh-rsa", $1, $2}'
+Run manually, via Task Scheduler, or in scripts (PowerShell/BASH/CRON).
+
+---
+
+## Creating an SSH Host Key Fingerprint
+
+Some SFTP servers require a host fingerprint. Here's how to generate it:
+
+### On Windows (PowerShell)
+
+```powershell
+ssh-keyscan -t rsa host.example.com 2>$null | ssh-keygen -lf - | ForEach-Object { $p = $_ -split '\s+'; "ssh-rsa $($p[0]) $($p[1])" }
+```
+
+### On Mac/Linux
+
+```bash
+ssh-keyscan -t rsa host.example.com 2>/dev/null | ssh-keygen -lf - | awk '{print "ssh-rsa", $1, $2}'
+```
