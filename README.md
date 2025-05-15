@@ -20,6 +20,7 @@
 💧 WinSCPnet
 
 ### TODO
+- filter file types
 
 [AQFTP/versions](/AQFTP/versions.md)
 
