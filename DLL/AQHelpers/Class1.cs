@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Net.Mime;
@@ -143,7 +144,7 @@ namespace AQHelpers
                 System.IO.File.AppendAllText(path, _out.ToString());
 
 
-                if (EmailErrors && string.IsNullOrEmpty(errorEmails))
+                if (EmailErrors && string.IsNullOrEmpty(errorEmails) == false)
                     SendEmail(errorEmails, "Error :: Application =  " + ApplicationName, _out.ToString().Replace(System.Environment.NewLine, "<br>"));
 
 
@@ -172,18 +173,19 @@ namespace AQHelpers
         /// <param name="to"></param>
         /// <param name="subject"></param>
         /// <param name="message"></param>
-        public void SendEmail(string to, string subject, string message, List<string> attachments = null)
+        public void SendEmail(string to, string subject, string message = "", List<string> attachments = null)
         {
             try
             {
                 WriteLog("Attempting to send an email");
+                string _message = string.IsNullOrEmpty(message) ? "" : message;
                 System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
                 System.Net.Mail.SmtpClient SmtpServer = new System.Net.Mail.SmtpClient(emailParams.SMTP);
 
                 mail.From = new System.Net.Mail.MailAddress(emailParams.EmailFrom);
                 mail.To.Add(to);
                 mail.Subject = subject + (Testing ? " TESTING" : "");
-                mail.Body = message;
+                mail.Body = _message;
                 mail.IsBodyHtml = true;
 
                 if (null != attachments)
@@ -214,6 +216,15 @@ namespace AQHelpers
                 WriteLog("Error Sending Email:");
                 WriteLog(ex.ToString());
             }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public bool GetDirectoryExists(string path)
+        {
+            return Directory.Exists(path);
         }
 
         public bool GetToBool(string text)

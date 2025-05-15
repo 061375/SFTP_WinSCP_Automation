@@ -259,15 +259,15 @@ namespace AQFTP
             }
             catch (UnauthorizedAccessException e)
             {
-                Libs.Helpers.LogError(e.Message);
+                Libs.Helpers.LogError(e.ToString());
             }
             catch (System.IO.DirectoryNotFoundException e)
             {
-                Libs.Helpers.LogError(e.Message);
+                Libs.Helpers.LogError(e.ToString());
             }
             catch (System.Exception excpt)
             {
-                Libs.Helpers.LogError(excpt.Message);
+                Libs.Helpers.LogError(excpt.ToString());
             }
             if (files != null)
                 Libs.Helpers.LogMethod(files.Count().ToString());

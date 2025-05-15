@@ -1,0 +1,5 @@
+*.config
+.vs/
+obj/
+bin/
+*.log

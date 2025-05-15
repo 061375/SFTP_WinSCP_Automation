@@ -5,11 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Collections.Specialized;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace AQ_FTP
 {
     internal static class Constants
     {
+        public static int LoopTime = 1800000;
+        public static bool Loop = false;
         public static bool Testing = false;
         public static bool ConsoleLog = true;
         public static string LogPath;
@@ -62,6 +65,8 @@ namespace AQ_FTP
 
             Testing = Libs.Helpers.GetToBool(_settings["Testing"]?.Value);
 
+            Loop = Libs.Helpers.GetToBool(_settings["Loop"]?.Value);
+            LoopTime = Libs.Helpers.GetToInt32(_settings["LoopTime"]?.Value);
             EmailUpdates = Libs.Helpers.GetToBool(_settings["EmailUpdates"]?.Value);
             EmailErrors = Libs.Helpers.GetToBool(_settings["EmailErrors"]?.Value);
             EmailAddresses = _settings["EmailAddresses"]?.Value;

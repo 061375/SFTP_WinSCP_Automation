@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AQFTP;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,5 +21,9 @@ namespace AQ_FTP
     internal class Public
     {
         public static string ConfigPath { get; set; }
+        public static AQFTP.Get Get { get; set; }
+        public static AQFTP.Set Set { get; set; }
+        public static string EDIIN { get; set; }
+        public static string EDIOUT { get; set;}
     }
 }

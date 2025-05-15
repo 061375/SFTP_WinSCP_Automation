@@ -40,6 +40,8 @@ The configuration is in an XML file. The path to this file can be specified as a
         <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.8" />
     </startup>
 	  <appSettings>
+    <add key="Loop" value="False" />
+    <add key="LoopTime" value="1800000" />
     <add key="Testing" value="True" />
     <add key="LogEvents" value="True" />
     <add key="ConsoleLog" value="True" />
@@ -78,6 +80,8 @@ The configuration is in an XML file. The path to this file can be specified as a
 	</configuration>
 
  - Testing [boolean] if True then the config will use the TEST configurations
+ - Loop [boolean] if True then the application will run on a loop indefinetly
+ - LoopTime [int] the number (in milliseconds) between each loop. *the default is 30 minutes*
  - LogEvents [boolean] if True then events will be logged
  - ConsoleLog [boolean] If True then Console events will be logged (note: some events will always be logged)
  - LogPath [string] If set this is a path to log files *.log
