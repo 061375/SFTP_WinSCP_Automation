@@ -23,11 +23,11 @@
 
 [versions.md](versions)
 
-[AQFTP/versions.md](AQFTP versions)
+[AQFTP/versions.md](/DLL/AQFTP/versions.md)
 
-[DLL/AQFTP/versions.md](AQFTP.dll versions)
+[AQFTP/versions.md](/DLL/AQFTP/versions.md)
 
-[DLL/AQHelpers/versions.md](AQHelpers.dll versions)
+[AQHelpers/versions.md](/DLL/AQHelpers/versions.md)
 
 ### Configuration
 
