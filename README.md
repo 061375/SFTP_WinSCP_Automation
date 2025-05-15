@@ -21,7 +21,7 @@
 
 ### TODO
 
-[AQFTP/versions](/AQFTP/AQFTP/versions.md)
+[AQFTP/versions](/AQFTP/versions.md)
 
 [DLL/AQFTP/versions](/DLL/AQFTP/versions.md)
 
