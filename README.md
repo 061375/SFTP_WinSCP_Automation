@@ -1,13 +1,13 @@
 
 # SFTP WinSCP Automation
 
-## A simple wrapper to automate uploading and downloading of files ( specifically for EDI transactions )
+#### A simple wrapper to automate uploading and downloading of files ( specifically for EDI transactions )
 
-## Jeremy Heminger <jeremy.heminger@aquamor.com>, <contact@jeremyheminger.com>
+#### Jeremy Heminger <jeremy.heminger@aquamor.com>, <contact@jeremyheminger.com>
 
   
 
-ᓚᘏᗢ
+	ᓚᘏᗢ
 
 #### Automates uploading and downloading files using FTP/SFTP specifically for EDI transactions
 
@@ -37,42 +37,42 @@ The configuration is in an XML file. The path to this file can be specified as a
         <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.8" />
     </startup>
 	  <appSettings>
-    <add key="Loop" value="False" />
-    <add key="LoopTime" value="1800000" />
-    <add key="Testing" value="True" />
-    <add key="LogEvents" value="True" />
-    <add key="ConsoleLog" value="True" />
-    <add key="LogPath" value="" />
+               <add key="Loop" value="False" />
+               <add key="LoopTime" value="1800000" />
+               <add key="Testing" value="True" />
+               <add key="LogEvents" value="True" />
+               <add key="ConsoleLog" value="True" />
+               <add key="LogPath" value="" />
     
-    <add key="EmailUpdates" value="True" />
-    <add key="EmailErrors" value="True" />
-    <add key="EmailAddresses" value="test@test.com,test2@test2.com" />
+               <add key="EmailUpdates" value="True" />
+               <add key="EmailErrors" value="True" />
+               <add key="EmailAddresses" value="test@test.com,test2@test2.com" />
     
     
-    <add key="TESTEDIIN" value="C:\EDI\IN\" />
-    <add key="TESTEDIOUT" value="C:\EDI\OUT\" />
-    <add key="EDIIN" value="M:\EDI\IN\" />
-    <add key="EDIOUT" value="M:\EDI\Out\" />
+               <add key="TESTEDIIN" value="C:\EDI\IN\" />
+               <add key="TESTEDIOUT" value="C:\EDI\OUT\" />
+               <add key="EDIIN" value="M:\EDI\IN\" />
+               <add key="EDIOUT" value="M:\EDI\Out\" />
 
-    <add key="UseSFTP" value="False" />
-    <add key="FtpServer" value="ftp.[ftpserver].com" />
-    <add key="FtpServerUserName" value="[username]" />
-    <add key="FtpServerPassword" value="[password]" />
+               <add key="UseSFTP" value="False" />
+               <add key="FtpServer" value="ftp.[ftpserver].com" />
+               <add key="FtpServerUserName" value="[username]" />
+               <add key="FtpServerPassword" value="[password]" />
     
-    <add key="SFTPServer" value="sftp.s[ftpserver].com" />
-    <add key="SFTPServerUserName" value="[username]" />
-    <add key="SFTPServerPassword" value="[password" />
-    <add key="SshHostKeyFingerprint" value="ssh-rsa 2048 [hash]" />
-    <add key="SFTPport" value="22" />
+               <add key="SFTPServer" value="sftp.s[ftpserver].com" />
+               <add key="SFTPServerUserName" value="[username]" />
+               <add key="SFTPServerPassword" value="[password" />
+               <add key="SshHostKeyFingerprint" value="ssh-rsa 2048 [hash]" />
+               <add key="SFTPport" value="22" />
 
-    <add key="Inbound" value="EDI/Inbound" />
-    <add key="Outbound" value="EDI/Outbound" />
+               <add key="Inbound" value="EDI/Inbound" />
+               <add key="Outbound" value="EDI/Outbound" />
 
-    <add key="SMTP" value="smtp.[smptp].com" />
-    <add key="EmailFrom" value="no-reply@[domain].com" />
-    <add key="EmailPort" value="587" />
-    <add key="EmailCredentialsUser" value="no-reply@[domain].com" />
-    <add key="EmailCredentialsPass" value="[password]" />
+               <add key="SMTP" value="smtp.[smptp].com" />
+               <add key="EmailFrom" value="no-reply@[domain].com" />
+               <add key="EmailPort" value="587" />
+               <add key="EmailCredentialsUser" value="no-reply@[domain].com" />
+               <add key="EmailCredentialsPass" value="[password]" />
 	  </appSettings>
 	</configuration>
 
