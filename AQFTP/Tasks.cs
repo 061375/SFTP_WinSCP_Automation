@@ -35,7 +35,7 @@ namespace AQ_FTP
         {
             Public.EDIIN = Constants.Testing ? Constants.TESTEDIIN : Constants.EDIIN;
             Public.EDIOUT = Constants.Testing ? Constants.TESTEDIOUT : Constants.EDIOUT;
-            Console.WriteLine();
+          
             // Check remote directory(s) exists
             if (!Libs.Helpers.GetDirectoryExists(Public.EDIIN))
             {
@@ -75,16 +75,19 @@ namespace AQ_FTP
                         // if successful then delete the remote files
                         Public.Set.RemoveAllFiles(Constants.Inbound);
                     }
-                    Libs.Helpers.SendEmail(Constants.EmailAddresses, $"AQFTP Downloaded {results.Count} Files", "");
+                    if (Constants.EmailUpdates)
+                        Libs.Helpers.SendEmail(Constants.EmailAddresses, $"AQFTP Downloaded {results.Count} Files", "");
                 }
                 else
                 {
                     Libs.Helpers.WriteLog("No files found in remote folder ...nothing to do");
-                    Libs.Helpers.SendEmail(Constants.EmailAddresses, "No files found in remote folder ...nothing to do", "");
+                    if (Constants.EmailUpdates)
+                        Libs.Helpers.SendEmail(Constants.EmailAddresses, "No files found in remote folder ...nothing to do", "");
                 }
 
                 // for debugging
-                Libs.Helpers.SendEmail(Constants.EmailAddresses, $"AQFTP Downloaded {results.Count} Files", "");
+                if (Constants.EmailUpdates)
+                    Libs.Helpers.SendEmail(Constants.EmailAddresses, $"AQFTP Downloaded {results.Count} Files", "");
                 ///
                 ///
                 /// <-- DOWNLOAD
@@ -125,12 +128,14 @@ namespace AQ_FTP
                         }
                     }
                     int success = files.Length - upfailed;
-                    Libs.Helpers.SendEmail(Constants.EmailAddresses, $"AQFTP Uploaded {success} Files", "");
+                    if (Constants.EmailUpdates)
+                        Libs.Helpers.SendEmail(Constants.EmailAddresses, $"AQFTP Uploaded {success} Files", "");
                 }
                 else
                 {
                     Libs.Helpers.WriteLog("No files found in local folder ...nothing to do");
-                    Libs.Helpers.SendEmail(Constants.EmailAddresses, "No files found in local folder ... nothing to do", "");
+                    if (Constants.EmailUpdates)
+                        Libs.Helpers.SendEmail(Constants.EmailAddresses, "No files found in local folder ... nothing to do", "");
                 }
                 ///
                 /// <-- UPLOAD
@@ -141,6 +146,7 @@ namespace AQ_FTP
             catch (Exception e)
             {
                 Libs.Helpers.LogError(e.ToString());
+                Console.WriteLine(e.ToString());
                 return false;
             }
         }

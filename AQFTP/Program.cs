@@ -13,7 +13,6 @@ namespace AQ_FTP
         static void Main(string[] args)
         {
            try {
-
                 if (args.Length > 0)
                 {
                     Public.ConfigPath = args[0];
@@ -66,7 +65,6 @@ namespace AQ_FTP
                 Libs.Helpers.LogError(e.ToString());
 
             }
-
         }
         private static Mutex mutex = null;
         static void StartLoop()
